@@ -9,8 +9,12 @@ fi
 rm -f arch/arm/boot/*.dtb
 rm -f .version
 
-### get defconfig
-ARCH=arm CROSS_COMPILE=./arm-eabi-4.6/bin/arm-eabi- make fusion3_pollux_windy_custom_defconfig
+if [[ $Target == 311 ]]; then
+	### get defconfig
+	ARCH=arm CROSS_COMPILE=./arm-eabi-4.6/bin/arm-eabi- make fusion3_pollux_windy_custom_defconfig
+else
+	ARCH=arm CROSS_COMPILE=./arm-eabi-4.6/bin/arm-eabi- make fusion3_pollux_custom_defconfig
+fi
 
 ### compile kernel
 ARCH=arm CROSS_COMPILE=./arm-eabi-4.6/bin/arm-eabi- make
